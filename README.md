@@ -1,2 +1,2 @@
 # HelloWorld2020
-A reminder app with incentives based on choose-your-own progression.
+A reminder app with incentives based on a choose-your-own adventure progression.
