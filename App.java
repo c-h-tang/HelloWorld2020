@@ -22,17 +22,6 @@ public class App extends Application{
                     NotificationManager.IMPORTANCE_HIGH
             );
             channel1.setDescription("Channel 1 High Priority Test");
-
-            NotificationChannel channel2 = new NotificationChannel(
-                    CHANNEL_2_ID,
-                    "Channel 1",
-                    NotificationManager.IMPORTANCE_LOW
-            );
-            channel2.setDescription("Channel 2 Low Priority Test");
-
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel1);
-            manager.createNotificationChannel(channel2);
         }
     }
 }
