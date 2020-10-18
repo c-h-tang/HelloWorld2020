@@ -15,6 +15,7 @@ public class Reminder {
     //This constructor is for parsing user input
     public Reminder(String nextDate, int num, int timeInterval, String reminderTitle, String reminderMessage) {
         // timeInterval represents {day, week, month, year}
+        num = 1;
         switch (timeInterval) {
             case 2:
                 this.period = Period.ofWeeks(num);
