@@ -2,6 +2,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class Reminder {
@@ -74,6 +75,21 @@ public class Reminder {
     //used to store inside file
     public String toString() {
         return initialDate + "," + nextDate + "," + period + "," + reminderTitle + "," + reminderMessage;
+    }
+
+    public boolean isSameDay() {
+        ZonedDateTime currentDate = LocalDateTime.parse(new Date().toString(), formatter).atZone(ZoneId.systemDefault());
+        ZonedDateTime alarmDate = LocalDateTime.parse(getNextDate().toString(), formatter)
+                .atZone(ZoneId.systemDefault());
+        ZonedDateTime week = alarmDate.minusDays(1);
+        return currentDate.isAfter(week) && currentDate.isBefore(alarmDate);
+    }
+
+    public long getMillisBetween() {
+        if (isSameDay()) {
+            return getNextDate().getTime() - new Date().getTime();
+        }
+        return -1;
     }
 
     public Date getInitialDate() {
