@@ -44,7 +44,7 @@ public class ReminderGrabber {
                 break;
             }
             StringTokenizer strTok = new StringTokenizer(line, ",");
-            reminders.add(new Reminder(strTok.nextToken(), strTok.nextToken(), strTok.nextToken(), strTok.nextToken(), strTok.nextToken()));
+            reminders.add(new Reminder(strTok.nextToken(), strTok.nextToken(), strTok.nextToken(), strTok.nextToken()));
         }
         try {
             bfr.close();
@@ -54,8 +54,8 @@ public class ReminderGrabber {
         }
     }
 
-    public void addReminder(String initialDate, int num, int timeInterval, String reminderTitle, String reminderMessage) {
-        reminders.add(new Reminder(initialDate, num, timeInterval, reminderTitle, reminderMessage));
+    public void addReminder(String nextDate, int num, int timeInterval, String reminderTitle, String reminderMessage) {
+        reminders.add(new Reminder(nextDate, num, timeInterval, reminderTitle, reminderMessage));
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(reminderStorage, true);
