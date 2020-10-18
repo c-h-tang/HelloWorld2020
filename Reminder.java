@@ -9,9 +9,11 @@ public class Reminder {
     private Date initialDate;
     private Date nextDate;
     Period period;
+    String reminderTitle;
+    String reminderMessage;
 
     //This constructor is for parsing user input
-    public Reminder(String initialDate, int num, int timeInterval) {
+    public Reminder(String initialDate, int num, int timeInterval, String reminderTitle, String reminderMessage) {
         // timeInterval represents {day, week, month, year}
         switch (timeInterval) {
             case 2:
@@ -27,7 +29,7 @@ public class Reminder {
                 this.period = Period.ofDays(num);
         }
 
-        SimpleDateFormat toDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat toDate = new SimpleDateFormat("MM/dd/yyyy HH:mm");
         try {
             this.initialDate = toDate.parse(initialDate);
         } catch (ParseException e) {
@@ -35,10 +37,13 @@ public class Reminder {
             System.exit(0);
         }
         nextDate = calculateNextDate();
+
+        this.reminderTitle = reminderTitle;
+        this.reminderMessage = reminderMessage;
     }
 
     //This constructor is for parsing from file
-    public Reminder(String initialDate, String nextDate, String period) {
+    public Reminder(String initialDate, String nextDate, String period, String reminderTitle, String reminderMessage) {
         SimpleDateFormat toDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
         try {
             this.initialDate = toDate.parse(initialDate);
@@ -48,6 +53,8 @@ public class Reminder {
             System.exit(0);
         }
         this.period = Period.parse(period);
+        this.reminderTitle = reminderTitle;
+        this.reminderMessage = reminderMessage;
     }
 
     //Calculates what the next date should be
@@ -66,7 +73,7 @@ public class Reminder {
 
     //used to store inside file
     public String toString() {
-        return initialDate + "," + nextDate + "," + period;
+        return initialDate + "," + nextDate + "," + period + "," + reminderTitle + "," + reminderMessage;
     }
 
     public Date getInitialDate() {
